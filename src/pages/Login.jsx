@@ -48,7 +48,6 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              placeholder="admin"
             />
           </div>
           <div className="form-group">
@@ -58,7 +57,6 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="admin123"
             />
           </div>
           {error && <div className="error-message">{error}</div>}
