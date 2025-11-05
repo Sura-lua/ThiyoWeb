@@ -4,6 +4,7 @@ import { useState } from 'react';
 import React from 'react';
 import { useTable } from '../contexts/TableContext';
 import { useProduct } from '../contexts/ProductContext';
+import ConfirmModal from '../components/ConfirmModal';
 import {
   LineChart,
   Line,
@@ -34,6 +35,7 @@ const AdminDashboard = () => {
   const { products, getLowStockProducts } = useProduct();
   const [activeTab, setActiveTab] = useState('revenue-today');
   const [expandedMonth, setExpandedMonth] = useState(null);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const todayRevenue = getTodayRevenue(orders);
   const currentYear = new Date().getFullYear();
@@ -44,10 +46,12 @@ const AdminDashboard = () => {
   const lowStockProducts = getLowStockProducts();
 
   const handleLogout = () => {
-    if (confirm('ต้องการออกจากระบบหรือไม่?')) {
-      logout();
-      navigate('/login');
-    }
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
+    logout();
+    navigate('/');
   };
 
   const toggleMonthExpansion = (monthIndex) => {
@@ -992,6 +996,17 @@ const PrintCheck = () => {
         </table>
       </div>
     </div>
+    <ConfirmModal
+      show={showLogoutModal}
+      title="ออกจากระบบ"
+      message="ต้องการออกจากระบบหรือไม่?"
+      onConfirm={confirmLogout}
+      onCancel={() => setShowLogoutModal(false)}
+      confirmText="ออกจากระบบ"
+      cancelText="ยกเลิก"
+      variant="default"
+    />
+  </div>
   );
 };
 

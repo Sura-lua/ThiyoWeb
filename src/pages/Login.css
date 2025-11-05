@@ -107,3 +107,24 @@
   color: #888;
 }
 
+.home-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d8659;
+  border: 2px solid #2d8659;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.home-btn:hover {
+  background: #2d8659;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 134, 89, 0.3);
+}
+

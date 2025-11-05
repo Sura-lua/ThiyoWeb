@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import ConfirmModal from '../components/ConfirmModal';
 import './Login.css';
 
 const Login = () => {
@@ -9,16 +10,27 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (login(username, password)) {
-      navigate('/admin');
+    const success = await login(username, password);
+    if (success) {
+      setShowSuccessModal(true);
     } else {
       setError('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
     }
+  };
+
+  const handleSuccessConfirm = () => {
+    setShowSuccessModal(false);
+    navigate('/admin');
+  };
+
+  const handleGoHome = () => {
+    navigate('/');
   };
 
   return (
@@ -49,12 +61,24 @@ const Login = () => {
           {error && <div className="error-message">{error}</div>}
           <button type="submit" className="login-btn">เข้าสู่ระบบ</button>
         </form>
+        <button type="button" onClick={handleGoHome} className="home-btn">
+          ไปหน้าแรก
+        </button>
         {import.meta.env.DEV && (
           <div className="login-info">
             <small>Development Mode: Username: admin | Password: admin123</small>
           </div>
         )}
       </div>
+      
+      <ConfirmModal
+        show={showSuccessModal}
+        title="เข้าสู่ระบบสำเร็จ"
+        message="ยินดีต้อนรับสู่ระบบ Admin"
+        onConfirm={handleSuccessConfirm}
+        confirmText="ตกลง"
+        variant="success"
+      />
     </div>
   );
 };
