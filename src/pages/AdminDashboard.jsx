@@ -61,10 +61,16 @@ const AdminDashboard = () => {
   const activeOrders = orders.filter(o => o.status === 'active');
 
   return (
+    <>
     <div className="admin-dashboard">
       <div className="admin-header">
         <h1>Admin Dashboard</h1>
-        <button onClick={handleLogout} className="logout-btn">ออกจากระบบ</button>
+        <div className="admin-header-buttons">
+          <button onClick={() => navigate('/')} className="home-btn-admin">
+            ไปหน้าแรก
+          </button>
+          <button onClick={handleLogout} className="logout-btn">ออกจากระบบ</button>
+        </div>
       </div>
 
       <div className="admin-nav">
@@ -1006,7 +1012,7 @@ const PrintCheck = () => {
       cancelText="ยกเลิก"
       variant="default"
     />
-  </div>
+    </>
   );
 };
 

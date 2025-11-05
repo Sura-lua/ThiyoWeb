@@ -8,13 +8,18 @@ const ConfirmModal = ({ show, title, message, onConfirm, onCancel, confirmText =
   };
 
   const handleCancel = () => {
-    if (onCancel) onCancel();
+    if (onCancel) {
+      onCancel();
+    } else {
+      // If no onCancel provided, just close by calling onConfirm
+      if (onConfirm) onConfirm();
+    }
   };
 
   return (
     <div className="confirm-modal-overlay" onClick={handleCancel}>
       <div className="confirm-modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="confirm-modal-header">
+        <div className={`confirm-modal-header confirm-modal-${variant}`}>
           <h3>{title}</h3>
         </div>
         <div className="confirm-modal-body">

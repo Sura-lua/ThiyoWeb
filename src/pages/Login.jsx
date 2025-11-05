@@ -73,10 +73,12 @@ const Login = () => {
       
       <ConfirmModal
         show={showSuccessModal}
-        title="เข้าสู่ระบบสำเร็จ"
+        title="✅ เข้าสู่ระบบสำเร็จ"
         message="ยินดีต้อนรับสู่ระบบ Admin"
         onConfirm={handleSuccessConfirm}
+        onCancel={handleSuccessConfirm}
         confirmText="ตกลง"
+        cancelText=""
         variant="success"
       />
     </div>
