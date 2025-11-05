@@ -49,9 +49,11 @@ const Login = () => {
           {error && <div className="error-message">{error}</div>}
           <button type="submit" className="login-btn">เข้าสู่ระบบ</button>
         </form>
-        <div className="login-info">
-          <small>Username: admin | Password: admin123</small>
-        </div>
+        {import.meta.env.DEV && (
+          <div className="login-info">
+            <small>Development Mode: Username: admin | Password: admin123</small>
+          </div>
+        )}
       </div>
     </div>
   );

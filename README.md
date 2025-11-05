@@ -60,14 +60,34 @@ Frontend จะรันที่ `http://localhost:5173`
 - **Backend**: Express.js, SQLite
 - **API**: RESTful API with polling for real-time updates
 
-## Deploy เป็นออนไลน์
+## 🚀 Deploy เป็นออนไลน์
 
-ดูคู่มือการ deploy ที่ [DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md)
+### Frontend (Vercel)
 
-### Quick Deploy:
-1. **Frontend**: Deploy ที่ Vercel (vercel.com)
-2. **Backend**: Deploy ที่ Railway (railway.app)
-3. ตั้งค่า `VITE_API_URL` ใน Vercel
+1. ไปที่ [vercel.com](https://vercel.com)
+2. Sign up/Login ด้วย GitHub
+3. คลิก "Add New Project"
+4. เลือก repository `ThiyoWeb`
+5. ตั้งค่า Environment Variables:
+   - Key: `VITE_API_URL`
+   - Value: `https://your-backend-url.railway.app/api` (ใส่ URL ของ backend)
+6. Deploy!
+
+### Backend (Railway)
+
+1. ไปที่ [railway.app](https://railway.app)
+2. Sign up/Login ด้วย GitHub
+3. คลิก "New Project" → "Deploy from GitHub repo"
+4. เลือก repository และ folder `server`
+5. Railway จะ deploy อัตโนมัติ
+6. คลิก service → Settings → Networking → Copy Public Domain
+7. นำ URL ไปใส่ใน `VITE_API_URL` ของ Vercel (เพิ่ม `/api` ต่อท้าย)
+
+### หลัง Deploy
+
+- Frontend: `https://your-app.vercel.app`
+- Backend: `https://your-app.railway.app`
+- API: `https://your-app.railway.app/api`
 
 ## Database
 
