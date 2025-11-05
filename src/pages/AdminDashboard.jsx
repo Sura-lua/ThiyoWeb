@@ -36,6 +36,7 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('revenue-today');
   const [expandedMonth, setExpandedMonth] = useState(null);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showLogoutSuccessModal, setShowLogoutSuccessModal] = useState(false);
 
   const todayRevenue = getTodayRevenue(orders);
   const currentYear = new Date().getFullYear();
@@ -50,7 +51,13 @@ const AdminDashboard = () => {
   };
 
   const confirmLogout = () => {
+    setShowLogoutModal(false);
     logout();
+    setShowLogoutSuccessModal(true);
+  };
+
+  const handleLogoutSuccessConfirm = () => {
+    setShowLogoutSuccessModal(false);
     navigate('/');
   };
 
@@ -72,6 +79,28 @@ const AdminDashboard = () => {
           <button onClick={handleLogout} className="logout-btn">ออกจากระบบ</button>
         </div>
       </div>
+      
+      <ConfirmModal
+        show={showLogoutModal}
+        title="ออกจากระบบ"
+        message="ต้องการออกจากระบบหรือไม่?"
+        onConfirm={confirmLogout}
+        onCancel={() => setShowLogoutModal(false)}
+        confirmText="ออกจากระบบ"
+        cancelText="ยกเลิก"
+        variant="default"
+      />
+      
+      <ConfirmModal
+        show={showLogoutSuccessModal}
+        title="✅ ออกจากระบบสำเร็จ"
+        message="คุณได้ออกจากระบบแล้ว"
+        onConfirm={handleLogoutSuccessConfirm}
+        onCancel={handleLogoutSuccessConfirm}
+        confirmText="ตกลง"
+        cancelText=""
+        variant="success"
+      />
 
       <div className="admin-nav">
         <button 
@@ -1002,16 +1031,6 @@ const PrintCheck = () => {
         </table>
       </div>
     </div>
-    <ConfirmModal
-      show={showLogoutModal}
-      title="ออกจากระบบ"
-      message="ต้องการออกจากระบบหรือไม่?"
-      onConfirm={confirmLogout}
-      onCancel={() => setShowLogoutModal(false)}
-      confirmText="ออกจากระบบ"
-      cancelText="ยกเลิก"
-      variant="default"
-    />
     </>
   );
 };

@@ -25,6 +25,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const result = await api.login(username, password);
       if (result.success) {
+        // Update localStorage immediately for synchronous access
+        localStorage.setItem('isAuthenticated', 'true');
         setIsAuthenticated(true);
         return true;
       }
@@ -36,6 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    localStorage.setItem('isAuthenticated', 'false');
     setIsAuthenticated(false);
   };
 

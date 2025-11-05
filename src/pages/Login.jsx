@@ -26,7 +26,10 @@ const Login = () => {
 
   const handleSuccessConfirm = () => {
     setShowSuccessModal(false);
-    navigate('/admin');
+    // Use setTimeout to ensure state is updated before navigation
+    setTimeout(() => {
+      navigate('/admin');
+    }, 100);
   };
 
   const handleGoHome = () => {
