@@ -1032,7 +1032,6 @@ const PrintCheck = () => {
         </table>
       </div>
     </div>
-    </>
   );
 };
 
