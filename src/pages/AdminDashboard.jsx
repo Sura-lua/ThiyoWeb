@@ -480,6 +480,7 @@ const AdminDashboard = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
